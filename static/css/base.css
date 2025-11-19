@@ -1,0 +1,68 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+/* CSS variables */
+:root {
+  --primary-font:"Inter", sans-sefir;
+  --secondary-font:"Audiowide", sans-sefir;
+  --primary-color:#5c0099;
+  --secondary-color:#2f184b;
+  --highlight-color:#9b72cf;
+  --highlight-color-light:#f4effa;
+}
+
+/* Global Styles */
+body {
+  color: white;
+  background-color: black;
+  font-family: var(--primary-font);
+}
+
+h1,
+h2,
+h3 {
+  color: var(--primary-color);
+  font-family: var(--secondary-font);
+}
+
+/* Navbar */
+.nav-link {
+  color: var(--primary-color);
+}
+
+.sign-up-btn {
+  color: white;
+  background-color: var(--primary-color);
+  font-family: var(--secondary-font);
+}
+
+.navbar-brand {
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  font-family: var(--secondary-font);
+}
+
+.burger-icon {
+  color: var(--primary-color);
+  font-size: 1.5rem;
+}
+
+.burger-icon-btn {
+  border-color: var(--primary-color);
+}
+
+/* Footer */
+footer {
+    background-color: var(--primary-color);
+}
+
+.social-links i {
+    color: var(--highlight-color-light);
+    font-size: 1.6rem;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.social-links i:hover {
+    color: var(--highlight-color);
+}
