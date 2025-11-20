@@ -1,8 +1,85 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'home/css/home.css' %}">
+{% endblock %}
+
 {% block page_header %}
 {% endblock %}
 
 {% block content %}
+<header class="m-4">
+  <div class="container text-center">
+    <div class="row">
+      <div class="col-12">
+        <h1>Trade Smarter. Start Today.</h1>
+      </div>
+      <div class="col-12">
+        <p>Our platform lets you test your crypto trading strategies against real historical data, giving you the insight you need before risking any capital.</p>
+      </div>
+    </div>
+  </div>
+  <div class="container mt-4 text-center">
+    <form>
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-8 mb-3">
+          <input type="email" name="form-control" placeholder="Email address" class="email-input form-control">
+        </div>
+        <div class="col-12 mb-3">
+          <button type="submit" class="btn custom-button-primary">Get Started</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</header>
+
+<!-- Subscription Plans Section -->
+<section class="m-4">
+  <div class="container text-center"> 
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <h3> Choose your plan</h3>
+      </div>
+    </div>
+  </div>
+  <div class="container text-center">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-4 my-4">
+        <div class="card custom-card mx-auto" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Standard</h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary">£4.99</h6>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+            <a href="#" class="card-link">Card link</a>
+            <a href="#" class="card-link">Another link</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 my-4">
+        <div class="card custom-card mx-auto" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Base</h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary">£9.99</h6>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+            <a href="#" class="card-link">Card link</a>
+            <a href="#" class="card-link">Another link</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 my-4">
+        <div class="card custom-card mx-auto" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Premium</h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary">£14.99</h6>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+            <a href="#" class="card-link">Card link</a>
+            <a href="#" class="card-link">Another link</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 {% endblock %}
