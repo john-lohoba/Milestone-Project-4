@@ -1,14 +1,14 @@
 /* Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
 /* CSS variables */
 :root {
-  --primary-font:"Inter", sans-sefir;
-  --secondary-font:"Audiowide", sans-sefir;
-  --primary-color:#5c0099;
-  --secondary-color:#2f184b;
-  --highlight-color:#9b72cf;
-  --highlight-color-light:#f4effa;
+  --primary-font: "Inter", sans-sefir;
+  --secondary-font: "Audiowide", sans-sefir;
+  --primary-color: #5c0099;
+  --secondary-color: #2f184b;
+  --highlight-color: #9b72cf;
+  --highlight-color-light: #f4effa;
 }
 
 /* Global Styles */
@@ -51,18 +51,24 @@ h3 {
   border-color: var(--primary-color);
 }
 
+/* Buttons */
+.custom-button-primary {
+  color: white;
+  background-color: var(--primary-color);
+}
+
 /* Footer */
 footer {
-    background-color: var(--primary-color);
+  background-color: var(--primary-color);
 }
 
 .social-links i {
-    color: var(--highlight-color-light);
-    font-size: 1.6rem;
-    margin-right: 10px;
-    margin-left: 10px;
+  color: var(--highlight-color-light);
+  font-size: 1.6rem;
+  margin-right: 10px;
+  margin-left: 10px;
 }
 
 .social-links i:hover {
-    color: var(--highlight-color);
+  color: var(--highlight-color);
 }
