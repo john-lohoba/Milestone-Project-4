@@ -46,6 +46,9 @@ INSTALLED_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "home",
+    # Other
+    "crispy_forms",
+    "crispy_bootstrap5",
 ]
 
 MIDDLEWARE = [
@@ -59,6 +62,9 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "tbo.urls"
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 TEMPLATES = [
     {
