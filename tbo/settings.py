@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "home",
+    "users",
     # Other
     "crispy_forms",
     "crispy_bootstrap5",
@@ -91,6 +92,11 @@ AUTHENTICATION_BACKENDS = [
     # `allauth` specific authentication methods, such as login by email
     "allauth.account.auth_backends.AuthenticationBackend",
 ]
+
+# Custom Signup form
+ACCOUNT_FORMS = {
+    "signup": "users.forms.CustomSignupForm",
+}
 
 SITE_ID = 1
 
