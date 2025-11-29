@@ -18,3 +18,11 @@ class StrategyTests(TestCase):
         stats = bt.run()
         # Checks if return value exists in stats object
         self.assertIn("Return [%]", stats.keys(), msg="Ema crossover test failed")
+
+    def test_rsi_mean_reversion_runs(self):
+        from strategies.strategy_classes.rsi_mean_reversion import RsiMeanReversion
+
+        bt = Backtest(BTCUSD, RsiMeanReversion, cash=10_000)
+        stats = bt.run()
+
+        self.assertIn("Return [%]", stats.keys(), msg="RSI mean reversion test failed")
