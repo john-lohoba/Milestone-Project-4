@@ -1,5 +1,5 @@
 from backtesting import Strategy
-from backtesting.lib import crossover
+from backtesting.lib import crossover, FractionalBacktest
 import pandas as pd
 
 
@@ -12,6 +12,7 @@ class EmaCrossover(Strategy):
     # Default values
     fast = 12
     slow = 26
+    position_size = 0.02
 
     def init(self):
         close = self.data.Close
@@ -30,9 +31,9 @@ class EmaCrossover(Strategy):
         if crossover(self.fast_ema, self.slow_ema):  # type: ignore[arg-type]
             if not self.position.is_long:
                 self.position.close()
-            self.buy()
+            self.buy(size=self.position_size)
 
         elif crossover(self.slow_ema, self.fast_ema):  # type: ignore[arg-type]
             if not self.position.is_short:
                 self.position.close()
-            self.sell()
+            self.sell(size=self.position_size)

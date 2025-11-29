@@ -1,5 +1,5 @@
 from django.test import TestCase
-from backtesting import Backtest
+from backtesting.lib import FractionalBacktest
 from backtesting.test import BTCUSD
 
 
@@ -14,7 +14,7 @@ class StrategyTests(TestCase):
     def test_ema_crossover_runs(self):
         from strategies.strategy_classes.ema_crossover import EmaCrossover
 
-        bt = Backtest(BTCUSD, EmaCrossover, cash=10_000)
+        bt = FractionalBacktest(BTCUSD, EmaCrossover, cash=10_000)
         stats = bt.run()
         # Checks if return value exists in stats object
         self.assertIn("Return [%]", stats.keys(), msg="Ema crossover test failed")
@@ -22,7 +22,7 @@ class StrategyTests(TestCase):
     def test_rsi_mean_reversion_runs(self):
         from strategies.strategy_classes.rsi_mean_reversion import RsiMeanReversion
 
-        bt = Backtest(BTCUSD, RsiMeanReversion, cash=10_000)
+        bt = FractionalBacktest(BTCUSD, RsiMeanReversion, cash=10_000)
         stats = bt.run()
 
         self.assertIn("Return [%]", stats.keys(), msg="RSI mean reversion test failed")

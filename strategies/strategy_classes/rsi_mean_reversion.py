@@ -1,5 +1,5 @@
 from backtesting import Strategy
-from backtesting.lib import crossover
+from backtesting.lib import FractionalBacktest
 import pandas as pd
 
 
@@ -12,6 +12,7 @@ class RsiMeanReversion(Strategy):
     rsi_length = 14
     oversold = 30
     overbought = 70
+    position_size = 0.02
 
     def init(self):
         def rsi(series, n):
@@ -30,10 +31,9 @@ class RsiMeanReversion(Strategy):
         if rsi_value < self.oversold:
             if not self.position.is_long:
                 self.position.close()
-            self.buy()
+            self.buy(size=self.position_size)
 
         elif rsi_value > self.overbought:
             if not self.position.is_short:
                 self.position.close()
-            self.buy()
-
+            self.buy(size=self.position_size)
