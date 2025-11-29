@@ -26,3 +26,11 @@ class StrategyTests(TestCase):
         stats = bt.run()
 
         self.assertIn("Return [%]", stats.keys(), msg="RSI mean reversion test failed")
+
+    def test_bollinger_breakout_runs(self):
+        from strategies.strategy_classes.bollinger_breakout import BollingerBreakout
+
+        bt = FractionalBacktest(BTCUSD, BollingerBreakout, cash=10_000)
+        stats = bt.run()
+
+        self.assertIn("Return [%]", stats.keys(), msg="Bollinger breakout test failed")
