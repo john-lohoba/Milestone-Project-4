@@ -7,6 +7,10 @@ from strategies.models import Strategy
 
 
 class BacktestRun(models.Model):
+    """
+    Represents a single backtest request submitted by a user
+    """
+
     STATUS_QUEUED = "queued"
     STATUS_RUNNING = "running"
     STATUS_COMPLETED = "completed"
@@ -36,6 +40,7 @@ class BacktestRun(models.Model):
     started_on = models.DateTimeField(blank=True, null=True)
     finished_on = models.DateTimeField(blank=True, null=True)
 
+    # Status updaters for Celery tasks
     def mark_running(self):
         self.status = self.STATUS_RUNNING
         self.started_on = now()
@@ -54,3 +59,21 @@ class BacktestRun(models.Model):
 
     def __str__(self):
         return f"{self.user} - {self.strategy.name} ({self.pk})"
+
+
+class BacktestResult(models.Model):
+    """
+    Stores the outupt of a completed backtest
+    """
+
+    run = models.OneToOneField(
+        "BacktestRun", on_delete=models.CASCADE, related_name="result"
+    )
+    data = models.JSONField()
+    trades = models.JSONField()
+    equity_curve = models.JSONField()
+    raw_stats = models.JSONField(blank=True, null=True)
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Result for Run {self.run.pk}"  # type: ignore
