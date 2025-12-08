@@ -1,5 +1,5 @@
 from django.db import models
-from django.utils.html import ValidationError
+from django.core.exceptions import ValidationError
 from django.utils.text import slugify
 from django.utils.module_loading import import_string
 
