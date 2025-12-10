@@ -5,6 +5,7 @@ from celery import shared_task
 from backtesting.lib import FractionalBacktest
 
 from strategies.registry import load_strategy_class
+from marketdata.services import get_ohlcv
 
 @shared_task(bin=True)
 def run_backtest_task(self,run_id: int):
@@ -25,7 +26,7 @@ def run_backtest_task(self,run_id: int):
             end=run.end_date,
         )
 
-        if df in None or df.empty:
+        if df is None or df.empty:
             raise ValueError("Recieved empy market data.")
         
         bt = FractionalBacktest(
