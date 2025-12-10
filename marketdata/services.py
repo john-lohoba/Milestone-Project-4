@@ -5,10 +5,11 @@ import requests
 from tbo.settings import COINGECKO_API_KEY
 
 
-
-
-
 def get_ohlcv():
+    """
+    Fetches OHLC data from CoinGecko's api.
+    Data is returned in json and then converted to pd dataframe format.
+    """
 
     url = "https://api.coingecko.com/api/v3/coins/bitcoin/ohlc?vs_currency=usd&days=30"
 
@@ -16,9 +17,15 @@ def get_ohlcv():
 
     response = requests.get(url, headers=headers)
     print(response.status_code)
-    print(response.json())
 
-    return response
+    # Converts response into ohlc dataframe format
+    data = response.json()
+    df = pd.DataFrame(data, columns=["timestamp", "Open", "High", "Low", "Close"])
+    df["timestamp"] = pd.to_datetime(df["timestamp"], unit="ms")
+    df.set_index("timestamp", inplace=True)
+    print(df)
+
+    return df
 
 # def get_ohlcv(symbol: str, timeframe: str, start, end) -> pd.DataFrame:
 #     """
