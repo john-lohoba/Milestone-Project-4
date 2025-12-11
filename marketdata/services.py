@@ -1,17 +1,39 @@
 from django.core.exceptions import ValidationError
-from datetime import datetime
 import pandas as pd
 import requests
 from tbo.settings import COINGECKO_API_KEY
 
 
-def get_ohlcv():
+SYMBOL_MAP = {
+    "BTC": "bitcoin",
+    "ETH": "ethereum",
+    "SOL": "solana",
+}
+
+AVAILABLE_DAYS = [1, 7, 14, 30, 90, 180, 365 ]
+
+def get_ohlcv(symbol: str, days: int=365):
     """
     Fetches OHLC data from CoinGecko's api.
     Data is returned in json and then converted to pd dataframe format.
     """
 
-    url = "https://api.coingecko.com/api/v3/coins/bitcoin/ohlc?vs_currency=usd&days=30"
+    # Checks if api endpoint parameters are allowed, if not validation error raised.
+    symbol = symbol.upper()
+    if symbol not in SYMBOL_MAP:
+        raise ValidationError(f"Unsupported symbol {symbol}")
+    
+    coin_id = SYMBOL_MAP[symbol]
+
+    # Number of days is set to 365 as default for now
+    days_selected = 365
+    if days_selected not in AVAILABLE_DAYS:
+        raise ValidationError(f"Unsupported number of days. Selected: {days_selected}")
+    
+    days = days_selected
+    
+    # Dynamic url for api calls
+    url = f"https://api.coingecko.com/api/v3/coins/{coin_id}/ohlc?vs_currency=usd&days={days}"
 
     headers = {"x-cg-demo-api-key": COINGECKO_API_KEY}
 
@@ -26,62 +48,3 @@ def get_ohlcv():
     print(df)
 
     return df
-
-# def get_ohlcv(symbol: str, timeframe: str, start, end) -> pd.DataFrame:
-#     """
-#     Fetch OHLCV data from CoinGecko and Converts to DataFrame
-#     """
-#     coin_id = symbol_to_coingecko_id(symbol)
-#     if coin_id is None:
-#         raise ValidationError(f"Unknown symbol '{symbol}'")
-    
-#     # Converts str to dates
-#     def to_date(value):
-#         if isinstance(value, str):
-#             return datetime.strptime(value, "%Y-%m-%d").date()
-#         return value
-
-#     start = to_date(start)
-#     end = to_date(end)    
-    
-#     days = (end - start).days
-
-#     url = f"{COINGECKO_BASE}/coins/{coin_id}/ohlc"
-#     params = {"vs_currency": "usd", "days": days}
-
-#     response = requests.get(url, params=params)
-#     response.raise_for_status()
-
-#     data = response.json()
-
-#     if not data:
-#         return pd.DataFrame() 
-    
-#     # Converts retrieved data into pd DataFrame for Backtesting to use later
-#     df = pd.DataFrame(
-#         data,
-#         columns=["timestamp", "Open", "High", "Low", "Close"]
-#     )
-
-#     df["timestamp"] = pd.to_datetime(df["timestamp"], unit="ms")
-#     df.set_index("timestamp", inplace=True)
-
-#     # Add dummy data for volume since CoinGecko doesn't by default
-#     df["Volume"] = 1.0
-
-#     df = df.loc[start:end]
-
-#     return df
-
-# def symbol_to_coingecko_id(symbol: str) -> str | None:
-#     """
-#     CoinGecko ID mapper
-#     """
-#     symbol = symbol.lower()
-#     mapping = {
-#         "btc": "bitcoin",
-#         "eth": "etherium",
-#         "sol": "solana",
-#     }
-
-#     return mapping.get(symbol)

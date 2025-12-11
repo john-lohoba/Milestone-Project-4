@@ -21,13 +21,11 @@ def run_backtest_task(self,run_id: int):
         StrategyClass = load_strategy_class(run.strategy.python_class_path)
         df = get_ohlcv(
             symbol=run.symbol,
-            timeframe=run.timeframe,
-            start=run.start_date,
-            end=run.end_date,
+            days=365
         )
 
         if df is None or df.empty:
-            raise ValueError("Recieved empy market data.")
+            raise ValidationError("Recieved empty market data.")
         
         bt = FractionalBacktest(
             df,
