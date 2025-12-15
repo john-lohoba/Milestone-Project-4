@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container my-4">
+    <h2>Your Backtests</h2>
+
+    {% if runs %}
+    <table class="table table-striped mt-3">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Strategy</th>
+                <th>Symbol</th>
+                <th>Status</th>
+                <th>Created</th>
+                <th>Result</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for run in runs %}
+            <tr>
+                <td>{{ run.id }}</td>
+                <td>{{ run.strategy.name }}</td>
+                <td>{{ run.symbol }}</td>
+                <td>
+                    {% if run.status == "completed" %}
+                    <span class="text-success">{{ run.status }}</span>
+                    {% elif run.status == "running" %}
+                    <span class="text-warning">{{ run.status }}</span>
+                    {% elif run.status == "failed" %}
+                    <span class="text-danger">{{ run.status }}</span>
+                    {% else %}
+                    <span>{{ run.status }}</span>
+                    {% endif %}
+                </td>
+                <td>{{ run.created_on|date:"Y-m-d H:i" }}</td>
+                <td>
+                    {% if run.status == "completed" %}
+                    <a href="{% url 'dashboard:backtest-detail' run.id %}" class="btn btn-primary btn-sm">
+                        View Result
+                    </a>
+                    {% else %}
+                    <span>—</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% else %}
+    <p>You have not submitted any backtests yet.</p>
+    {% endif %}
+
+    <a href="{% url 'dashboard:backtest-view' %}" class="btn btn-success mt-3">
+        Run New Backtest
+    </a>
+</div>
+
+{% endblock %}

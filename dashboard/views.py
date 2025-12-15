@@ -122,3 +122,18 @@ def backtest_detail(request, run_id):
         "equity_curve": result.equity_curve,
     }
     return render(request, "dashboard/backtest_detail.html", context)
+
+
+@login_required
+def backtest_list(request):
+    """
+    Display all backtests submitted by the logged-in user.
+    """
+    runs = (
+        BacktestRun.objects
+        .filter(user=request.user)
+        .select_related("strategy")
+        .order_by("-created_on")
+    )
+
+    return render(request, "dashboard/backtest_list.html", {"runs": runs})
