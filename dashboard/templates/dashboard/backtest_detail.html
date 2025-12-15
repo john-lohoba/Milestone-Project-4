@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-4">
+    <h2>Backtest Result</h2>
+
+    <p><strong>Strategy:</strong> {{ run.strategy.name }}</p>
+    <p><strong>Symbol:</strong> {{ run.symbol }}</p>
+    <p><strong>Submitted on:</strong> {{ run.created_on }}</p>
+    <p><strong>Status:</strong> {{ run.status|title }}</p>
+
+    {% if run.status == "failed" %}
+    <div class="alert alert-danger mt-3">
+        <strong>Error:</strong> {{ run.error_message }}
+    </div>
+    {% endif %}
+
+    {% if run.status != "completed" %}
+    <p class="mt-3">⏳ This backtest is still processing...</p>
+    <p>Please refresh this page in a few seconds.</p>
+    {% endif %}
+
+    <hr>
+
+    <h3>Performance Summary</h3>
+    <ul>
+        {% for key, value in stats.items %}
+        <li><strong>{{ key }}:</strong> {{ value }}</li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+
+    <h3>Trades</h3>
+    {% if trades %}
+    <table class="table table-secondary table-striped">
+        <thead>
+            <tr>
+                {% for key in trades.0.keys %}
+                <th>{{ key|title }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for trade in trades %}
+            <tr>
+                {% for val in trade.values %}
+                <td>{{ val }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No trades made.</p>
+    {% endif %}
+
+    <hr>
+
+    <h3>Equity Curve</h3>
+    {% if equity_curve %}
+    <p>Equity curve has {{ equity_curve|length }} points.</p>
+    <!-- Later we can render a JS plot here -->
+    {% else %}
+    <p>No equity curve available.</p>
+    {% endif %}
+
+</div>
+
+
+{% endblock %}

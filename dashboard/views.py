@@ -1,10 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 from .forms import BacktestSubmissionForm
 from strategies.models import Strategy
 from backtests.tasks import run_backtest_task
+from backtests.models import BacktestRun, BacktestResult
 
 
 @login_required
@@ -57,3 +58,67 @@ def backtest_post(request):
             print("FAILED TO RUN TEST")
             print(backtest_form)
     return redirect("backtest-view")
+
+
+ALLOWED_STATS = [
+    "Start",
+    "End",
+    "Duration",
+    "Exposure Time [%]",
+    "Equity Final [$]",
+    "Equity Peak [$]",
+    "Return [%]",
+    "Buy & Hold Return [%]",
+    "Return (Ann.) [%]",
+    "Volatility (Ann.) [%]",
+    "CAGR [%]",
+    "Sharpe Ratio",
+    "Sortino Ratio",
+    "Calmar Ratio",
+    "Alpha [%]",
+    "Beta",
+    "Max. Drawdown [%]",
+    "Avg. Drawdown [%]",
+    "Max. Drawdown Duration",
+    "Avg. Drawdown Duration",
+    "# Trades",
+    "Win Rate [%]",
+    "Best Trade [%]",
+    "Worst Trade [%]",
+    "Avg. Trade [%]",
+    "Max. Trade Duration",
+    "Avg. Trade Duration",
+    "Profit Factor",
+    "Expectancy [%]",
+    "SQN",
+    "Kelly Criterion",
+]
+
+
+@login_required
+def backtest_detail(request, run_id):
+    """
+    Displays the results of a completed backtest.
+    """
+    run = get_object_or_404(BacktestRun, pk=run_id, user=request.user)
+
+    if run.status != BacktestRun.STATUS_COMPLETED:
+        
+        return render(request, "dashboard/backtest_result.html", {"run": run})
+    
+    raw_stats = run.result.raw_stats
+
+    result = run.result
+    filtered_stats = {
+        key: raw_stats.get(key)
+        for key in ALLOWED_STATS
+        if key in raw_stats
+    }
+    context = {
+        "run": run,
+        "result": result,
+        "stats": filtered_stats,
+        "trades": result.trades,
+        "equity_curve": result.equity_curve,
+    }
+    return render(request, "dashboard/backtest_detail.html", context)
