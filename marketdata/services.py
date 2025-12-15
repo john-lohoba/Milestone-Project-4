@@ -43,6 +43,8 @@ def get_ohlcv(symbol: str, days: int=365):
     # Converts response into ohlc dataframe format
     data = response.json()
     df = pd.DataFrame(data, columns=["timestamp", "Open", "High", "Low", "Close"])
+    # Dummy data for volume since GoinGecko does not send it
+    df["Volume"] = 1.0
     df["timestamp"] = pd.to_datetime(df["timestamp"], unit="ms")
     df.set_index("timestamp", inplace=True)
     print(df)
