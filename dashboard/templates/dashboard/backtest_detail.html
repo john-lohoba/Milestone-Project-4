@@ -13,7 +13,7 @@
     </div>
 </div>
 
-<div class="container dashboard-container">
+<div class="container dashboard-container mb-4">
     <div class="row">
         <div class="col-12">
             <div class="dashboard-card">
@@ -23,25 +23,22 @@
                 <p><strong>Created:</strong> {{ run.created_on|date:"Y-m-d H:i" }}</p>
             </div>
         </div>
-
     </div>
-
+    
     <div class="row">
         <div class="col">
             <h3 class="dashboard-title" style="font-size:1.3rem;">Performance Statistics</h3>
         </div>
+    </div>
+    <!-- Performance stats grid -->
+    <div class="stats-grid">
+        {% for key, val in stats.items %}
+        <div class="stat-item">
+            <h4>{{ key }}</h4>
+            <p>{{ val }}</p>
         </div>
-        <div class="row">
-            <div class="stats-grid">
-                {% for key, val in stats.items %}
-                <div class="stat-item">
-                    <h4>{{ key }}</h4>
-                    <p>{{ val }}</p>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-    
+        {% endfor %}
+    </div>
 </div>
 
 {% endblock %}
