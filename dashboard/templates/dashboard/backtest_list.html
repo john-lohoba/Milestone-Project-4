@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% load static %}
-
-{% block content %}
-
+{% block extra_css %}
 <link rel="stylesheet" href="{% static 'dashboard/css/dashboard.css' %}">
+{% endblock %}
+{% block content %}
 
 
 <div class="container">
@@ -20,7 +20,7 @@
             <table class="dashboard-table">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <!-- <th>ID</th> -->
                         <th>Strategy</th>
                         <th>Symbol</th>
                         <th>Status</th>
@@ -32,7 +32,7 @@
                     {% for run in runs %}
 
                     <tr style="cursor:pointer;">
-                        <td>{{ run.id }}</td>
+                        <!-- <td>{{ run.id }}</td> -->
                         <td>{{ run.strategy.name }}</td>
                         <td>{{ run.symbol }}</td>
                         <td>
