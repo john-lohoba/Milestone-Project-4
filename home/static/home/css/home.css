@@ -12,6 +12,6 @@ header {
   background: radial-gradient(
     circle at bottom right,
     var(--highlight-color),
-    var(--primary-color)
+    var(--secondary-color)
   );
 }
