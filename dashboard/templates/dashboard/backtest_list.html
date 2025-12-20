@@ -36,7 +36,7 @@
                         <td>{{ run.strategy.name }}</td>
                         <td>{{ run.symbol }}</td>
                         <td>
-                            <a class="row-link" href="{% url 'dashboard:backtest-detail' run.id %}">
+                            <a class="row-link" href="{% url 'backtest-detail' run.id %}">
                                 <span class="status-pill status-{{ run.status }}">
                                     {{ run.status }}
                                 </span>

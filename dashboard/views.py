@@ -57,7 +57,7 @@ def backtest_post(request):
         else:
             print("FAILED TO RUN TEST")
             print(backtest_form)
-    return redirect("dashboard:backtest-list")
+    return redirect("backtest-list")
 
 
 ALLOWED_STATS = [

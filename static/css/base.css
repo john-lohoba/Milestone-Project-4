@@ -27,7 +27,7 @@ h3 {
 
 /* Navbar */
 .nav-link {
-  color: var(--primary-color);
+  color: var(--highlight-color);
 }
 
 .sign-up-btn {

@@ -1,5 +1,10 @@
 {% load static %}
 
+{% url 'backtest-view' as backtest_view %}
+{% url 'backtest-list' as backtest_list %}
+{% url 'account_login' as login_url %}
+{% url 'account_logout' as logout_url %}
+
 <!doctype html>
 <html lang="en">
 
@@ -40,8 +45,8 @@
 </head>
 
 <body class="d-flex flex-column min-vh-100">
-      <nav id="navbar" class="navbar navbar-expand-lg">
-        <div class="container">
+      <nav id="navbar" class="navbar navbar-expand-lg" data-bs-theme="dark">
+        <div class="container-fluid">
             <a class="navbar-brand" href="#">Tbo</a>
             <button class="navbar-toggler burger-icon-btn" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -50,9 +55,22 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    {% if not user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link sign-up-btn btn py-1" href="#">Sign In</a>
+                        <a class="nav-link sign-up-btn btn py-1" href="{% url 'account_login' %}">Sign In</a>
                     </li>
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'backtest-view' %}">Backtest</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == backtest_list_url %}active" aria-current="page{% endif %}" href="{% url 'backtest-list' %}">Backtest Runs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == logout_url %}active" aria-current="page{% endif %}" href="{% url 'account_logout' %}">Logout</a>
+                    </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>

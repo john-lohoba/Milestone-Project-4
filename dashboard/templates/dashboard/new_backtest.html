@@ -21,7 +21,7 @@
 
     <div class="dashboard-card form-card">
 
-        <form action="{% url 'dashboard:backtest-post' %}" method="post" class="dashboard-form">
+        <form action="{% url 'backtest-post' %}" method="post" class="dashboard-form">
             {% csrf_token %}
 
             <div class="form-section">
