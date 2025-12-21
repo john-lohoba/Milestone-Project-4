@@ -5,10 +5,18 @@ from django.utils import timezone
 # Create your models here.
 
 class Plan(models.Model):
+    """
+    Model to store different subscription plan options
+    """
     name = models.CharField(max_length=50)
     slug = models.SlugField(unique=True)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     max_backtests_per_day = models.IntegerField(null=True, blank=True)
+    stripe_price_id = models.CharField(max_length=254, null=True, blank=True,)
+    stripe_product_id = models.CharField(max_length=254, null=True, blank=True)
+
+    def __str__(self):
+        return self.name
 
 
 class UserSubscription(models.Model):

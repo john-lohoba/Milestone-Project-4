@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "home",
     "marketdata",
     "strategies",
+    "subscription",
     "users",
     # Other
     "crispy_forms",
