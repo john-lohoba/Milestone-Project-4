@@ -34,6 +34,8 @@ STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY")
 DEBUG = True
 
 ALLOWED_HOSTS = []
+DOMAIN = "http://127.0.0.1:8000"
+
 
 
 # Application definition

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col mt-2">
+            <h2>Checkout canceled</h2>
+            <p>No charges were made.</p>
+            <a href="{% url 'backtest-list' %}">Back to dashboard</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -9,7 +9,7 @@ def create_checkout_session(*, user, plan):
     Creates a Stripe Checkout Session for a subscription plan.
     """
 
-    if not plan.stripe_pid:
+    if not plan.stripe_price_id:
         raise ValueError("Plan does not have a Stripe Price ID")
 
     # Reuse Stripe customer if it exists
@@ -23,7 +23,7 @@ def create_checkout_session(*, user, plan):
         payment_method_types=["card"],
         line_items=[
             {
-                "price": plan.stripe_pid,
+                "price": plan.stripe_price_id,
                 "quantity": 1,
             }
         ],

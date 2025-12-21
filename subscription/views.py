@@ -15,15 +15,16 @@ def start_checkout(request, slug):
 
     if plan.price == 0:
         messages.error(request, "Free plan does not require checkout.")
-        return redirect("dashboard:backtests")
+        return redirect("/")
 
     try:
         session = create_checkout_session(user=request.user, plan=plan)
         return redirect(session.url)
 
     except Exception as exc:
-        messages.error(request, str(exc))
-        return redirect("dashboard:backtests")
+        error = messages.error(request, str(exc))
+        print(error)
+        return redirect("/")
 
 
 
