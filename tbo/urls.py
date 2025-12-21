@@ -23,6 +23,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/", include("allauth.urls")),
     path("dashboard/", include("dashboard.urls")),
+    path("subscription/", include("subscription.urls")),
     path("users/signup/", views.CustomSignupView.as_view(), name="account_signup"),
     path("", include("home.urls")),
 ]
