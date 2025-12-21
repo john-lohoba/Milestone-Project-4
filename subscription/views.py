@@ -1,9 +1,16 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
+from django.conf import settings
 from django.contrib import messages
+from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 
 from .models import Plan
+from subscription.webhooks import dispatch_stripe_event
 from .stripe_checkout import create_checkout_session
+import stripe
+
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
 @login_required
@@ -34,3 +41,21 @@ def checkout_success(request):
 
 def checkout_cancel(request):
     return render(request, "subscription/cancel.html")
+
+
+@csrf_exempt
+def stripe_webhook(request):
+    payload = request.body
+    sig_header = request.META.get("HTTP_STRIPE_SIGNATURE")
+
+    try:
+        event = stripe.Webhook.construct_event(
+            payload=payload,
+            sig_header=sig_header,
+            secret=settings.STRIPE_WEBHOOK_SECRET,
+        )
+    except Exception:
+        return HttpResponse(status=400)
+
+    dispatch_stripe_event(event)
+    return HttpResponse(status=200)
