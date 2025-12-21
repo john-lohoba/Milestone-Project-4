@@ -58,4 +58,5 @@ def stripe_webhook(request):
         return HttpResponse(status=400)
 
     dispatch_stripe_event(event)
+    print(f"Stripe Event: {event['type']}")
     return HttpResponse(status=200)

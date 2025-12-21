@@ -5,36 +5,45 @@ from subscription.models import UserSubscription, Plan
 
 
 def handle_checkout_completed(session):
-    email = session["customer_details"]["email"]
-    customer_id = session["customer"]
+    metadata = session.get("metadata", {})
+    user_id = metadata.get("user_id")
+    plan_id = metadata.get("plan_id")
+
+    if not user_id or not plan_id:
+        return
+
+    user = User.objects.get(id=user_id)
+    plan = Plan.objects.get(id=plan_id)
+
     subscription_id = session["subscription"]
+    customer_id = session["customer"]
 
-    user = User.objects.get(email=email)
-
-    user_sub, _ = UserSubscription.objects.get_or_create(user=user)
-    user_sub.stripe_customer_id = customer_id
-    user_sub.stripe_subscription_id = subscription_id
-    user_sub.is_active = True
-    user_sub.save()
+    UserSubscription.objects.update_or_create(
+        user=user,
+        defaults={
+            "plan": plan,
+            "stripe_customer_id": customer_id,
+            "stripe_subscription_id": subscription_id,
+            "is_active": True,
+            "active_until": None,
+        },
+    )
 
 
 def handle_subscription_updated(subscription):
-    customer_id = subscription["customer"]
-    price_id = subscription["items"]["data"][0]["price"]["id"]
-    period_end = subscription["current_period_end"]
+    subscription_id = subscription["id"]
+    status = subscription["status"]
 
-    user_sub = UserSubscription.objects.get(
-        stripe_customer_id=customer_id
-    )
+    try:
+        user_sub = UserSubscription.objects.get(
+            stripe_subscription_id=subscription_id
+        )
+    except UserSubscription.DoesNotExist:
+        return
 
-    plan = Plan.objects.get(stripe_pid=price_id)
+    user_sub.is_active = status == "active"
+    user_sub.save(update_fields=["is_active"])
 
-    user_sub.plan = plan
-    user_sub.active_until = timezone.datetime.fromtimestamp(
-        period_end, tz=timezone.utc
-    )
-    user_sub.is_active = subscription["status"] == "active"
-    user_sub.save()
 
 
 def handle_subscription_deleted(subscription):

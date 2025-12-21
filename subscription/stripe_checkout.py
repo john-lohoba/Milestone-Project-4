@@ -30,6 +30,10 @@ def create_checkout_session(*, user, plan):
         success_url=f"{settings.DOMAIN}/subscription/success/",
         cancel_url=f"{settings.DOMAIN}/subscription/cancel/",
         allow_promotion_codes=True,
+        metadata={
+            "user_id": user.id,
+            "plan_id": plan.id,
+        }
     )
 
     return session

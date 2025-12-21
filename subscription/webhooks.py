@@ -18,11 +18,8 @@ def dispatch_stripe_event(event):
     if event_type == "checkout.session.completed":
         handle_checkout_completed(data)
 
-    elif event_type == "customer.subscription.updated":
+    elif event_type in (
+        "customer.subscription.updated",
+        "customer.subscription.deleted",
+    ):
         handle_subscription_updated(data)
-
-    elif event_type == "customer.subscription.deleted":
-        handle_subscription_deleted(data)
-    
-    print('Success!')
-    return HttpResponse(status=200)
