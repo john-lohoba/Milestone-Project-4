@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.utils.timezone import now
 
 from .forms import BacktestSubmissionForm
 from strategies.models import Strategy
 from backtests.tasks import run_backtest_task
 from backtests.models import BacktestRun, BacktestResult
+from subscription.models import UserSubscription
 
 
 @login_required
@@ -136,4 +138,14 @@ def backtest_list(request):
         .order_by("-created_on")
     )
 
-    return render(request, "dashboard/backtest_list.html", {"runs": runs})
+    user = request.user
+    subscription = getattr(user, "usersubscription", None)
+    today_count = BacktestRun.objects.filter(user=user, created_on__date=now().date()).count()
+
+
+    return render(request, "dashboard/backtest_list.html",
+                  {
+                      "runs": runs,
+                      "subscription": subscription,
+                      "today_count": today_count,
+                      })
