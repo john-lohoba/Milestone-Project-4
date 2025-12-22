@@ -60,3 +60,18 @@ def stripe_webhook(request):
     dispatch_stripe_event(event)
     print(f"Stripe Event: {event['type']}")
     return HttpResponse(status=200)
+
+
+@login_required
+def pricing_view(request):
+    plans = Plan.objects.all().order_by("price")
+
+    subscription = getattr(request.user, "usersubscription", None)
+    current_plan = subscription.plan if subscription else None
+
+    context = {
+        "plans": plans,
+        "current_plan": current_plan,
+    }
+
+    return render(request, "subscription/pricing.html", context)

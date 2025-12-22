@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'subscription/css/subscription.css' %}">
+{% endblock %}
+{% block content %}
+
+<div class="container dashboard-container">
+
+    <h1 class="dashboard-title">Choose your plan</h1>
+    <p class="dashboard-subtitle">
+        Upgrade anytime. Cancel anytime.
+    </p>
+
+    <div class="pricing-grid">
+
+        {% for plan in plans %}
+        <div class="pricing-card {% if current_plan == plan %}active{% endif %}">
+
+            <h2 class="plan-name">{{ plan.name }}</h2>
+
+            <div class="plan-price">
+                {% if plan.price == 0 %}
+                Free
+                {% else %}
+                ${{ plan.price }} / month
+                {% endif %}
+            </div>
+
+            <ul class="plan-features">
+                {% if plan.max_backtests_per_day %}
+                <li>{{ plan.max_backtests_per_day }} backtests per day</li>
+                {% else %}
+                <li>Unlimited backtests</li>
+                {% endif %}
+                <li>Daily timeframe strategies</li>
+                <li>Email support</li>
+            </ul>
+
+            {% if current_plan == plan %}
+            <div class="current-plan">
+                Current plan
+            </div>
+            {% else %}
+            {% if plan.price > 0 %}
+            <a href="{% url 'subscription:checkout' plan.slug %}" class="btn-primary">
+                Upgrade
+            </a>
+            {% else %}
+            <div class="current-plan muted">
+                Free plan
+            </div>
+            {% endif %}
+            {% endif %}
+
+        </div>
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

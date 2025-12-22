@@ -35,7 +35,7 @@
         </div>
         {% endif %}
 
-        <a href="{% url 'backtest-list' %}" class="btn-secondary">
+        <a href="{% url 'subscription:pricing' %}" class="btn-secondary">
             Manage subscription
         </a>
 
@@ -48,7 +48,7 @@
             {{ today_count }} / 5 backtests today
         </div>
 
-        <a href="{% url 'backtest-list' %}" class="btn-primary">
+        <a href="{% url 'subscription:pricing' %}" class="btn-primary">
             Upgrade
         </a>
         {% endif %}
