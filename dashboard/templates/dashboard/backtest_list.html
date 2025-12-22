@@ -56,7 +56,7 @@
     </div>
 </div>
 
-<div class="container">
+<!-- <div class="container">
     <div class="row">
         <div class="col">
             <h3>Your Backtests</h3>
@@ -67,7 +67,6 @@
             <table class="dashboard-table">
                 <thead>
                     <tr>
-                        <!-- <th>ID</th> -->
                         <th>Strategy</th>
                         <th>Symbol</th>
                         <th>Status</th>
@@ -79,7 +78,6 @@
                     {% for run in runs %}
 
                     <tr style="cursor:pointer;">
-                        <!-- <td>{{ run.id }}</td> -->
                         <td>{{ run.strategy.name }}</td>
                         <td>{{ run.symbol }}</td>
                         <td>
@@ -96,6 +94,67 @@
             </table>
         </div>
     </div>
+</div> -->
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h3 class="mb-3">Your Backtests</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+
+            <table class="dashboard-table">
+                <thead>
+                    <tr>
+                        <th>Strategy</th>
+                        <th>Symbol</th>
+                        <th>Status</th>
+                        <th>Created</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for run in page_obj %}
+                    <tr class="clickable-row" data-href="{% url 'backtest-detail' run.id %}">
+
+                        <td>{{ run.strategy.name }}</td>
+                        <td>{{ run.symbol }}</td>
+                        <td>
+                            <span class="status-pill status-{{ run.status }}">
+                                {{ run.status }}
+                            </span>
+                        </td>
+                        <td>{{ run.created_on|date:"Y-m-d H:i" }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4">No backtests yet.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+        {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}">← Previous</a>
+        {% endif %}
+
+        <span>
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+        </span>
+
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">Next →</a>
+        {% endif %}
+    </div>
 </div>
+
 
 {% endblock %}

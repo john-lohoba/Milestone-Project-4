@@ -62,10 +62,10 @@
                     {% endif %}
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'backtest-view' %}">Backtest</a>
+                        <a class="nav-link {% if request.path == backtest_list_url %}active" aria-current="page{% endif %}" href="{% url 'backtest-list' %}">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == backtest_list_url %}active" aria-current="page{% endif %}" href="{% url 'backtest-list' %}">Backtest Runs</a>
+                        <a class="nav-link active" aria-current="page" href="{% url 'backtest-view' %}">Backtests</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == logout_url %}active" aria-current="page{% endif %}" href="{% url 'account_logout' %}">Logout</a>

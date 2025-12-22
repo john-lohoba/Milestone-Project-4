@@ -244,3 +244,53 @@
     border-radius: 6px;
     text-decoration: none;
 }
+
+.clickable-row {
+    cursor: pointer;
+}
+
+.clickable-row:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+/* Pagination container */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    margin: 28px 0 10px;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+/* Pagination links */
+.pagination a {
+    padding: 8px 14px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.06);
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.15s ease;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Hover effect */
+.pagination a:hover {
+    background: rgba(34, 211, 238, 0.25);
+    border-color: rgba(34, 211, 238, 0.6);
+    color: #e0f7fa;
+}
+
+/* Page info text */
+.pagination span {
+    opacity: 0.7;
+    white-space: nowrap;
+}
+
+/* Disabled state (optional future-proofing) */
+.pagination a.disabled {
+    pointer-events: none;
+    opacity: 0.4;
+}
