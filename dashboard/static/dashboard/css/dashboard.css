@@ -62,15 +62,15 @@
 }
 
 .dashboard-form button {
-    background: #5b21b6;
-    border: none;
+    background: var(--secondary-color);
+    border: solid 1px var(--highlight-color);
     cursor: pointer;
     font-weight: 600;
     transition: 0.25s ease;
 }
 
 .dashboard-form button:hover {
-    background: #6d28d9;
+    background: var(--highlight-color);
 }
 
 /* ----------------------------------------
@@ -80,14 +80,14 @@
 .dashboard-table {
     width: 100%;
     border-collapse: collapse;
-    background: #1e1e2f;
+    background: rgba(30, 30, 47, 0.3);
     border-radius: 12px;
     overflow: hidden;
     margin-bottom: 2rem;
 }
 
 .dashboard-table th {
-    background: #2a2a40;
+    background: rgba(42, 42, 64, 0.4);
     padding: 0.9rem;
     text-align: left;
     color: #cbd5e1;
@@ -117,19 +117,23 @@
 }
 
 .status-queued {
-    background: #334155;
+    background: var(--secondary-color);
+    border: solid 1.5px #334155;
 }
 
 .status-running {
-    background: #0ea5e9;
+    background: var(--secondary-color);
+    border: solid 1.5px #0ea5e9;
 }
 
 .status-completed {
-    background: #22c55e;
+    background: var(--secondary-color);
+    border: solid 1.5px #22c55e;
 }
 
 .status-failed {
-    background: #ef4444;
+    background: var(--secondary-color);
+    border: solid 1.5px #ef4444;
 }
 
 /* ----------------------------------------
@@ -289,7 +293,7 @@
     white-space: nowrap;
 }
 
-/* Disabled state (optional future-proofing) */
+/* Disabled */
 .pagination a.disabled {
     pointer-events: none;
     opacity: 0.4;

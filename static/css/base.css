@@ -5,10 +5,10 @@
 :root {
   --primary-font: "Inter", sans-sefir;
   --secondary-font: "Audiowide", sans-sefir;
-  --primary-color: #5c0099;
-  --secondary-color: #2f184b;
-  --highlight-color: #9b72cf;
-  --highlight-color-light: #f4effa;
+  --primary-color:#1092ad;
+  --secondary-color:#111827;
+  --highlight-color:#38BDF8;
+  --highlight-color-light:#7DD3FC;
 }
 
 /* Global Styles */
@@ -32,7 +32,7 @@ body.custom-bg {
 h1,
 h2,
 h3 {
-  color: var(--highlight-color-light);
+  color: white;
   font-family: var(--secondary-font);
 }
 
@@ -64,14 +64,19 @@ h3 {
 
 /* Buttons */
 .custom-button-primary {
-  color: white;
-  background-color: var(--primary-color);
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.15s ease;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Footer */
-/* footer {
-  background-color: var(--primary-color);
-} */
+.custom-button-primary:hover {
+  background: rgba(34, 211, 238, 0.25);
+  border-color: rgba(34, 211, 238, 0.6);
+  color: #e0f7fa;
+}
 
 .social-links i {
   color: var(--highlight-color-light);
@@ -81,5 +86,9 @@ h3 {
 }
 
 .social-links i:hover {
-  color: var(--highlight-color);
+  color: var(--secondary-color);
+}
+
+footer p{
+  color: var(--highlight-color-light);
 }
