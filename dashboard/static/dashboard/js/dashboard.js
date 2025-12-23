@@ -1,8 +1,11 @@
 
 document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll(".clickable-row").forEach(row => {
-        row.addEventListener("click", () => {
-            window.location = row.dataset.href;
+    document.querySelectorAll(".clickable-row").forEach(function (row) {
+        row.addEventListener("click", function () {
+            const href = row.dataset.href;
+            if (href) {
+                window.location.href = href;
+            }
         });
     });
 });
