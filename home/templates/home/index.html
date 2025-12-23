@@ -35,7 +35,7 @@
 </header>
 
 <!-- Subscription Plans Section -->
-<section class="m-4">
+<!-- <section class="m-4">
   <div class="container text-center"> 
     <div class="row justify-content-center">
       <div class="col-12">
@@ -74,6 +74,67 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
+
+<div class="container my-5">
+  <div class="row g-4 justify-content-center">
+
+    <div class="col-12 col-md-6 col-lg-4 mb-4">
+      <div class="subscription-card h-100">
+        <h4 class="plan-title">Free</h4>
+        <p class="plan-price">£0 / month</p>
+
+        <ul class="plan-features">
+          <li>Up to 5 backtests per day</li>
+          <li>Access to core strategies</li>
+          <li>Daily timeframe only</li>
+          <li>Email support</li>
+        </ul>
+
+        <a href="{% url 'subscription:pricing' %}" class="btn btn-outline-primary w-100">
+          Get Started
+        </a>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-4 mb-4">
+      <div class="subscription-card h-100 highlighted">
+        <h4 class="plan-title">Basic</h4>
+        <p class="plan-price">£4.99 / month</p>
+
+        <ul class="plan-features">
+          <li>20 backtests per day</li>
+          <li>All built-in strategies</li>
+          <li>Priority execution</li>
+          <li>Email support</li>
+        </ul>
+
+        <a href="{% url 'subscription:checkout' 'basic' %}" class="btn btn-primary w-100">
+          Upgrade
+        </a>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-4 mb-4">
+      <div class="subscription-card h-100">
+        <h4 class="plan-title">Pro</h4>
+        <p class="plan-price">£9.99 / month</p>
+
+        <ul class="plan-features">
+          <li>Unlimited backtests</li>
+          <li>Advanced strategies</li>
+          <li>Fastest execution</li>
+          <li>Priority support</li>
+        </ul>
+
+        <a href="{% url 'subscription:checkout' 'pro' %}" class="btn btn-primary w-100">
+          Go Pro
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 
 {% endblock %}

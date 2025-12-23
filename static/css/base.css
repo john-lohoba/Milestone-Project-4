@@ -92,3 +92,66 @@ h3 {
 footer p{
   color: var(--highlight-color-light);
 }
+
+/* Subscription Cards */
+.subscription-card {
+  background: rgba(42, 42, 64, 0.88);
+  border-radius: 14px;
+  padding: 24px;
+  color: #e6e6eb;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.subscription-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+.subscription-card.highlighted {
+  border: 1px solid rgba(34, 211, 238, 0.5);
+  box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.25);
+}
+
+.plan-title {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.plan-price {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #22d3ee;
+  margin-bottom: 16px;
+}
+
+.plan-features {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 24px;
+}
+
+.plan-features li {
+  margin-bottom: 10px;
+  opacity: 0.9;
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: #0f6f7a;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #0b5a63;
+}
+
+.btn-outline-primary {
+  color: #22d3ee;
+  border-color: #22d3ee;
+}
+
+.btn-outline-primary:hover {
+  background-color: rgba(34, 211, 238, 0.15);
+  color: #ffffff;
+}
