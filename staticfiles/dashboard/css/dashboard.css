@@ -1,0 +1,300 @@
+/* ----------------------------------------
+   DASHBOARD BASE LAYOUT
+----------------------------------------- */
+
+.dashboard-container {
+    /* max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem; */
+    /* color: #e2e8f0; */
+    /* light grey */
+    /* font-family: "Inter", sans-serif; */
+} 
+
+.dashboard-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    color: #f1f5f9;
+}
+
+/* ----------------------------------------
+   CARDS
+----------------------------------------- */
+
+.dashboard-card {
+    background: rgba(30, 30, 47, 0.3);
+    border: 1px solid #2a2a40;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.dashboard-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #f8fafc;
+}
+
+/* ----------------------------------------
+   FORMS
+----------------------------------------- */
+
+.dashboard-form label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 0.95rem;
+    color: #cbd5e1;
+}
+
+.dashboard-form select,
+.dashboard-form input,
+.dashboard-form button {
+    width: 100%;
+    padding: 0.6rem;
+    margin-bottom: 1rem;
+    background: #2a2a40;
+    color: #f1f5f9;
+    border: 1px solid #3b3b55;
+    border-radius: 8px;
+    font-size: 0.95rem;
+}
+
+.dashboard-form button {
+    background: var(--secondary-color);
+    border: solid 1px var(--highlight-color);
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.25s ease;
+}
+
+.dashboard-form button:hover {
+    background: var(--highlight-color);
+}
+
+/* ----------------------------------------
+   TABLE STYLES (Backtest List)
+----------------------------------------- */
+
+.dashboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(30, 30, 47, 0.3);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.dashboard-table th {
+    background: rgba(42, 42, 64, 0.4);
+    padding: 0.9rem;
+    text-align: left;
+    color: #cbd5e1;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.dashboard-table td {
+    padding: 0.9rem 0.5rem;
+    font-size: 0.9rem;
+    color: #e2e8f0;
+    border-top: 1px solid #2a2a40;
+}
+
+.dashboard-table tr:hover td {
+    background: #2f2f45;
+}
+
+/* status pill styling */
+.status-pill {
+    padding: 0.35rem 0.6rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-block;
+    text-transform: capitalize;
+}
+
+.status-queued {
+    background: var(--secondary-color);
+    border: solid 1.5px #334155;
+}
+
+.status-running {
+    background: var(--secondary-color);
+    border: solid 1.5px #0ea5e9;
+}
+
+.status-completed {
+    background: var(--secondary-color);
+    border: solid 1.5px #22c55e;
+}
+
+.status-failed {
+    background: var(--secondary-color);
+    border: solid 1.5px #ef4444;
+}
+
+/* ----------------------------------------
+   BACKTEST DETAIL PAGE
+----------------------------------------- */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.2rem;
+}
+
+.stat-item {
+    background: rgba(203, 213, 225, 0.05);
+    padding: 1rem;
+    border-radius: 10px;
+    border: 1px solid #3b3b55;
+}
+
+.stat-item h4 {
+    color: #cbd5e1;
+    font-size: 0.95rem;
+    margin-bottom: 0.35rem;
+}
+
+.stat-item p {
+    font-size: 0.88rem;
+    color: #e2e8f0;
+}
+
+/* ----------------------------------------
+   LINKS
+----------------------------------------- */
+
+.dashboard-link {
+    color: #a78bfa;
+    font-weight: 500;
+}
+
+.dashboard-link:hover {
+    color: #c4b5fd;
+}
+
+.clickable-row {
+    position: relative;
+}
+
+/* Subscription Section */
+
+.subscription-card {
+    background: rgba(20, 25, 35, 0.85);
+    border-radius: 12px;
+    padding: 20px;
+    max-width: 360px;
+    color: #fff;
+    margin-left: 1rem;
+}
+
+.subscription-card h3 {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    margin-bottom: 10px;
+}
+
+.plan-name {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.plan-name.free {
+    color: #aaa;
+}
+
+.usage {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.usage.unlimited {
+    color: #4ade80;
+}
+
+.usage-bar {
+    height: 6px;
+    background: #1f2937;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 14px;
+}
+
+.usage-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #5eead4, #22d3ee);
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 8px 14px;
+    background: #22d3ee;
+    color: #000;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.btn-secondary {
+    display: inline-block;
+    padding: 8px 14px;
+    background: #1f2937;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.clickable-row {
+    cursor: pointer;
+}
+
+.clickable-row:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+/* Pagination container */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    margin: 28px 0 10px;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+/* Pagination links */
+.pagination a {
+    padding: 8px 14px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.06);
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.15s ease;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Hover effect */
+.pagination a:hover {
+    background: rgba(34, 211, 238, 0.25);
+    border-color: rgba(34, 211, 238, 0.6);
+    color: #e0f7fa;
+}
+
+/* Page info text */
+.pagination span {
+    opacity: 0.7;
+    white-space: nowrap;
+}
+
+/* Disabled */
+.pagination a.disabled {
+    pointer-events: none;
+    opacity: 0.4;
+}
