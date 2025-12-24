@@ -150,12 +150,6 @@ else:
     }
 
 
-DATABASES = {
-    "default": dj_database_url.parse(
-        "postgresql://neondb_owner:npg_qZ5nMcwLHQe2@ep-steep-field-a2f80xl6.eu-central-1.aws.neon.tech/clap_acre_age_580486"
-    )
-}
-
 if "test" in sys.argv:
     DATABASES["default"]["ENGINE"] = "django.db.backends.sqlite3"
 
