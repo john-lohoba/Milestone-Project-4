@@ -23,7 +23,7 @@
 ----------------------------------------- */
 
 .dashboard-card {
-    background: #1e1e2f;
+    background: rgba(30, 30, 47, 0.3);
     border: 1px solid #2a2a40;
     padding: 1.5rem;
     border-radius: 12px;
@@ -147,7 +147,7 @@
 }
 
 .stat-item {
-    background: #2a2a40;
+    background: rgba(203, 213, 225, 0.05);
     padding: 1rem;
     border-radius: 10px;
     border: 1px solid #3b3b55;
