@@ -6,6 +6,7 @@ from subscription.models import UserSubscription, Plan
 
 def handle_checkout_completed(session):
     metadata = session.get("metadata", {})
+
     user_id = metadata.get("user_id")
     plan_id = metadata.get("plan_id")
 
@@ -15,19 +16,17 @@ def handle_checkout_completed(session):
     user = User.objects.get(id=user_id)
     plan = Plan.objects.get(id=plan_id)
 
-    subscription_id = session["subscription"]
-    customer_id = session["customer"]
-
     UserSubscription.objects.update_or_create(
         user=user,
         defaults={
             "plan": plan,
-            "stripe_customer_id": customer_id,
-            "stripe_subscription_id": subscription_id,
+            "stripe_customer_id": session["customer"],
+            "stripe_subscription_id": session["subscription"],
             "is_active": True,
             "active_until": None,
         },
     )
+
 
 
 def handle_subscription_updated(subscription):
