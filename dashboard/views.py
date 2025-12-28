@@ -56,10 +56,9 @@ def backtest_post(request):
             form.user = request.user
             form.save()
             run_backtest_task(form.pk)
-            print("WORKING TEST SENT")
+            messages.add_message(request, messages.SUCCESS, "New backtest submitted")
         else:
-            print("FAILED TO RUN TEST")
-            print(backtest_form)
+            messages.add_message(request, messages.ERROR, "Error submitting backtest")
     return redirect("backtest-list")
 
 
