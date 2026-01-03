@@ -21,23 +21,23 @@
 
     <div class="dashboard-card form-card">
 
-        <form action="{% url 'backtest-post' %}" method="post" class="dashboard-form">
+        <form action="{% url 'backtest-post' %}" method="post" class="dashboard-form" id="backtest-submit-form">
             {% csrf_token %}
 
             <div class="form-section">
                 {{ form|crispy }}
             </div>
 
+        
             <div class="form-actions">
                 <button type="submit" class="btn-primary">Run Backtest</button>
             </div>
-
-        </form>
+        </form>        
     </div>
-
 </div>
+
 
 {% endblock %}
 {% block postloadjs %}
-<script src="{% static 'dashboard/js/backtest_params.js' %}"></script>
+<script src="{% static 'dashboard/js/dashboard.js' %}"></script>
 {% endblock %}

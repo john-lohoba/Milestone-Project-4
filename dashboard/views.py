@@ -45,21 +45,30 @@ def backtest_view(request):
                         "strategies": list(strategies),
                         "parameters": PARAMETERS,
                         })
-   
+
 
 @login_required
 def backtest_post(request):
+    """
+    View to handle backtest post requests.
+    """
     if request.method == "POST":
         backtest_form = BacktestSubmissionForm(request.POST)
+    
         if backtest_form.is_valid():
-            form = backtest_form.save(commit=False)
-            form.user = request.user
-            form.save()
-            run_backtest_task(form.pk)
-            messages.add_message(request, messages.SUCCESS, "New backtest submitted")
+            backtest = BacktestRun.objects.create(
+                user = request.user,
+                strategy = backtest_form.cleaned_data["strategy"],
+                symbol = backtest_form.cleaned_data["symbol"],
+                timeframe = backtest_form.cleaned_data["timeframe"],
+                parameters = backtest_form.get_parameters(),
+            )
+            run_backtest_task(backtest.pk)
+            messages.add_message(request, messages.SUCCESS, "New Backtest submitted")
         else:
             messages.add_message(request, messages.ERROR, "Error submitting backtest")
     return redirect("backtest-list")
+
 
 
 ALLOWED_STATS = [
@@ -108,9 +117,9 @@ def backtest_detail(request, run_id):
         
         return render(request, "dashboard/backtest_result.html", {"run": run})
     
-    raw_stats = run.result.raw_stats
+    raw_stats = run.result.raw_stats  # type: ignore
 
-    result = run.result
+    result = run.result  # type: ignore
     filtered_stats = {
         key: raw_stats.get(key)
         for key in ALLOWED_STATS

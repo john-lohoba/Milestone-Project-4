@@ -1,9 +1,46 @@
 from django import forms
-from backtests.models import BacktestRun
+from strategies.models import Strategy
 
-SUPPORTED_SYMBOLS = [("BTC", "Bitcoin"), ("ETH", "Ethereum"), ("SOL", "Solana")]
-class BacktestSubmissionForm(forms.ModelForm):
-    class Meta:
-        model = BacktestRun
-        fields = ("strategy", "symbol", "timeframe", "parameters")
-        widgets = {"symbol": forms.Select(choices=[("BTC", "Bitcoin"), ("ETH", "Ethereum"), ("SOL", "Solana")])}
+SUPPORTED_SYMBOLS = [
+    ("BTC", "Bitcoin"), 
+    ("ETH", "Ethereum"), 
+    ("SOL", "Solana")
+    ]
+
+
+class BacktestSubmissionForm(forms.Form):
+    
+    strategy = forms.ModelChoiceField(
+        queryset=Strategy.objects.filter(name="EMA Crossover"))
+    
+    symbol = forms.ChoiceField(choices=SUPPORTED_SYMBOLS)
+
+    timeframe = forms.ChoiceField(choices=[("1d", "1D")])
+
+    fast = forms.IntegerField(
+        max_value=365,
+        widget=forms.NumberInput(attrs={"placeholder": "e.g. 11"})
+    )
+    slow = forms.IntegerField(
+        max_value=365,
+        widget=forms.NumberInput(attrs={"placeholder": "e.g. 22"})
+    )
+    position_size = forms.DecimalField(
+        max_value= 1,
+        min_value = 0.01,
+        
+
+        widget=forms.NumberInput(attrs={
+        "placeholder": "e.g. 0.02",
+        })
+    )
+
+    def get_parameters(self):
+        return {
+            "fast": self.cleaned_data["fast"],
+            "slow": self.cleaned_data["slow"],
+            "position_size": float(
+                self.cleaned_data["position_size"]
+                ),
+        }
+
