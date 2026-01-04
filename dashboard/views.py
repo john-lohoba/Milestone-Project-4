@@ -147,7 +147,7 @@ def backtest_list(request):
         .order_by("-created_on")
     )
 
-    paginator = Paginator(runs, 5)
+    paginator = Paginator(runs, 7)
 
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)

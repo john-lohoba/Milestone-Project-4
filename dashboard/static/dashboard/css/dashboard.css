@@ -1,7 +1,5 @@
-/* ----------------------------------------
-   DASHBOARD BASE LAYOUT
------------------------------------------ */
 
+/* Dashboard base layout */
 .dashboard-title {
     font-size: 1.8rem;
     font-weight: 600;
@@ -9,10 +7,7 @@
     color: #f1f5f9;
 }
 
-/* ----------------------------------------
-   CARDS
------------------------------------------ */
-
+/* Cards */
 .dashboard-card {
     background: rgba(30, 30, 47, 0.3);
     border: 1px solid #2a2a40;
@@ -28,10 +23,7 @@
     color: #f8fafc;
 }
 
-/* ----------------------------------------
-   FORMS
------------------------------------------ */
-
+/* Forms */
 .dashboard-form label {
     display: block;
     margin-bottom: 0.4rem;
@@ -68,10 +60,13 @@
     display: none;
 }
 
-/* ----------------------------------------
-   TABLE STYLES (Backtest List)
------------------------------------------ */
+.dashboard-form input {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
 
+
+/* Table styles */
 .dashboard-table {
     width: 100%;
     border-collapse: collapse;
@@ -131,10 +126,7 @@
     border: solid 1.5px #ef4444;
 }
 
-/* ----------------------------------------
-   BACKTEST DETAIL PAGE
------------------------------------------ */
-
+/* Backtest detail page */
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -159,10 +151,8 @@
     color: #e2e8f0;
 }
 
-/* ----------------------------------------
-   LINKS
------------------------------------------ */
 
+/* Links */
 .dashboard-link {
     color: #a78bfa;
     font-weight: 500;

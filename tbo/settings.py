@@ -34,7 +34,7 @@ STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY")
 STRIPE_WEBHOOK_SECRET = os.environ.get("STRIPE_WEBHOOK_SECRET")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["tbo-app-4663a8d1ae01.herokuapp.com", "127.0.0.1", "localhost"]
 DOMAIN = os.getenv("DOMAIN", "http://127.0.0.1:8000")
