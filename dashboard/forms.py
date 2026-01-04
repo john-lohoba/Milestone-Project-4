@@ -13,17 +13,19 @@ class BacktestSubmissionForm(forms.Form):
     strategy = forms.ModelChoiceField(
         queryset=Strategy.objects.filter(name="EMA Crossover"))
     
-    symbol = forms.ChoiceField(choices=SUPPORTED_SYMBOLS)
+    symbol = forms.ChoiceField(choices=SUPPORTED_SYMBOLS,)
 
     timeframe = forms.ChoiceField(choices=[("1d", "1D")])
 
     fast = forms.IntegerField(
         max_value=365,
-        widget=forms.NumberInput(attrs={"placeholder": "e.g. 11"})
+        widget=forms.NumberInput(
+            attrs={"placeholder": "Fast Ema e.g. 11"})
     )
     slow = forms.IntegerField(
         max_value=365,
-        widget=forms.NumberInput(attrs={"placeholder": "e.g. 22"})
+        widget=forms.NumberInput(
+            attrs={"placeholder": "Slow Ema e.g. 22"})
     )
     position_size = forms.DecimalField(
         max_value= 1,
@@ -31,7 +33,7 @@ class BacktestSubmissionForm(forms.Form):
         
 
         widget=forms.NumberInput(attrs={
-        "placeholder": "e.g. 0.02",
+        "placeholder": "Position size e.g. 0.02",
         })
     )
 

@@ -2,15 +2,6 @@
    DASHBOARD BASE LAYOUT
 ----------------------------------------- */
 
-.dashboard-container {
-    /* max-width: 1100px;
-    margin: 0 auto;
-    padding: 2rem 1.5rem; */
-    /* color: #e2e8f0; */
-    /* light grey */
-    /* font-family: "Inter", sans-serif; */
-} 
-
 .dashboard-title {
     font-size: 1.8rem;
     font-weight: 600;
@@ -71,6 +62,10 @@
 
 .dashboard-form button:hover {
     background: var(--highlight-color);
+}
+
+.dashboard-form label {
+    display: none;
 }
 
 /* ----------------------------------------
