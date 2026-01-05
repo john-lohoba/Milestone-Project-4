@@ -34,7 +34,7 @@ STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY")
 STRIPE_WEBHOOK_SECRET = os.environ.get("STRIPE_WEBHOOK_SECRET")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["tbo-app-4663a8d1ae01.herokuapp.com", "127.0.0.1", "localhost"]
 DOMAIN = os.getenv("DOMAIN", "http://127.0.0.1:8000")
@@ -138,25 +138,17 @@ WSGI_APPLICATION = "tbo.wsgi.application"
 #     }
 # }
 
-# if 'DATABASE_URL' in os.environ:
-#     DATABASES = {
-#         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
-#     }
-# else: 
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.sqlite3',
-#             'NAME': BASE_DIR / 'db.sqlite3',
-#         }
-#     }
-
-# DATABASES = {"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))}
-DATABASES = {
-    "default": dj_database_url.config(
-        conn_max_age=600,
-        ssl_require=True,
-    )
-}
+if 'DATABASE_URL' in os.environ:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    }
+else: 
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 
