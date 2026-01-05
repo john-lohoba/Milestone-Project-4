@@ -27,14 +27,14 @@
     
     <div class="row">
         <div class="col">
-            <h3 class="dashboard-title" style="font-size:1.3rem;">Performance Statistics</h3>
+            <h2 class="dashboard-subtitle mt-2">Performance Statistics</h2>
         </div>
     </div>
     <!-- Performance stats grid -->
     <div class="stats-grid">
         {% for key, val in stats.items %}
         <div class="stat-item">
-            <h4>{{ key }}</h4>
+            <h3>{{ key }}</h3>
             <p>{{ val }}</p>
         </div>
         {% endfor %}
