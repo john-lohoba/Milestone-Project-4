@@ -56,46 +56,6 @@
     </div>
 </div>
 
-<!-- <div class="container">
-    <div class="row">
-        <div class="col">
-            <h3>Your Backtests</h3>
-        </div>
-    </div>
-    <div class="row justify-content-start">
-        <div class="col-2 col-md-10">
-            <table class="dashboard-table">
-                <thead>
-                    <tr>
-                        <th>Strategy</th>
-                        <th>Symbol</th>
-                        <th>Status</th>
-                        <th>Created</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    {% for run in runs %}
-
-                    <tr style="cursor:pointer;">
-                        <td>{{ run.strategy.name }}</td>
-                        <td>{{ run.symbol }}</td>
-                        <td>
-                            <a class="row-link" href="{% url 'backtest-detail' run.id %}">
-                                <span class="status-pill status-{{ run.status }}">
-                                    {{ run.status }}
-                                </span>
-                            </a>
-                        </td>
-                        <td>{{ run.created_on|date:"Y-m-d H:i" }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div> -->
-
 <div class="container">
     <div class="row">
         <div class="col">
