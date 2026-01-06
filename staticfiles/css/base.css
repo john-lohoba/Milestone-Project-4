@@ -116,6 +116,7 @@ footer p{
 .plan-title {
   font-weight: 600;
   margin-bottom: 8px;
+  font-family: var(--primary-font);
 }
 
 .plan-price {
