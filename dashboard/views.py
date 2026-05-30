@@ -164,3 +164,13 @@ def backtest_list(request):
                       "subscription": subscription,
                       "today_count": today_count,
                       })
+
+@login_required
+def backtest_delete(request, run_id):
+    page_obj = get_object_or_404(BacktestRun, pk=run_id)
+    if page_obj.user == request.user:
+        page_obj.delete()
+        messages.add_message(request, messages.SUCCESS, "Backtest run deleted")
+    else:
+        messages.add_message(request, messages.ERROR, "Error deleting backtest run")
+    return redirect("backtest-list")

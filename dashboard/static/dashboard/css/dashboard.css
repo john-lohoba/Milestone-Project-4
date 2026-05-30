@@ -239,6 +239,19 @@
     text-decoration: none;
 }
 
+.btn-delete {
+    padding: 0.35rem 0.6rem;
+    border-radius: 6px;
+    border: solid, 1.5px, #ee2222;
+    background: transparent;
+    color: #fff;
+}
+
+.btn-delete:hover {
+    color: #fff;
+    background-color: #ee2222;
+}
+
 .clickable-row {
     cursor: pointer;
 }
@@ -287,4 +300,10 @@
 .pagination a.disabled {
     pointer-events: none;
     opacity: 0.4;
+}
+
+/* Modals */
+.modal-content {
+    color: #e4e7ec;
+    background-color: #0f1535;
 }
