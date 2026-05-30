@@ -30,6 +30,7 @@ class BacktestRun(models.Model):
     parameters = models.JSONField()
     symbol = models.CharField(max_length=20)
     timeframe = models.CharField(max_length=10, default="1d")
+    notes = models.CharField(max_length=50, blank=True)
     status = models.CharField(
         max_length=20, choices=STATUS_CHOICES, default=STATUS_QUEUED
     )

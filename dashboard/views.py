@@ -62,6 +62,7 @@ def backtest_post(request):
                 symbol = backtest_form.cleaned_data["symbol"],
                 timeframe = backtest_form.cleaned_data["timeframe"],
                 parameters = backtest_form.get_parameters(),
+                notes = backtest_form.cleaned_data["notes"],
             )
             run_backtest_task(backtest.pk)
             messages.add_message(request, messages.SUCCESS, "New Backtest submitted")

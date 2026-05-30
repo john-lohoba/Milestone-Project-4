@@ -37,6 +37,8 @@ class BacktestSubmissionForm(forms.Form):
         })
     )
 
+    notes = forms.CharField(max_length=50, widget=forms.TextInput(attrs={"placeholder": "Notes"}))
+
     def get_parameters(self):
         return {
             "fast": self.cleaned_data["fast"],
