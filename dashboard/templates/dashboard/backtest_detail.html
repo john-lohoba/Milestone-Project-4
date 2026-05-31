@@ -50,6 +50,35 @@
     </div>
 </div>
 
+<div class="container mb-2">
+    <div class="row">
+        <div class="col-6">
+            <button data-run_id="{{ run.id }}" id="btn-edit" class="btn btn-secondary">Edit Notes</button>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Form Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Update Notes</h5>
+            </div>
+            <div class="modal-body">
+                <form id="editForm" method="post">
+                    {% csrf_token %}
+                    <label for="notes"> Notes </label>
+                    <input type="text" id="notes" name="notes" value="" maxlength="50">
+                    <div class="modal-footer mt-2">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                        <button id="editConfirm" type="submit" class="btn btn-secondary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Delete Form Modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModal" aria-hidden="true">

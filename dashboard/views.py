@@ -166,8 +166,12 @@ def backtest_list(request):
                       "today_count": today_count,
                       })
 
+
 @login_required
 def backtest_delete(request, run_id):
+    """
+    View to handle backtest delete requests.
+    """
     page_obj = get_object_or_404(BacktestRun, pk=run_id)
     if page_obj.user == request.user:
         page_obj.delete()
@@ -175,3 +179,20 @@ def backtest_delete(request, run_id):
     else:
         messages.add_message(request, messages.ERROR, "Error deleting backtest run")
     return redirect("backtest-list")
+
+
+@login_required
+def backtest_edit(request, run_id):
+    """
+    View to handle backtest notes edit post requests.
+    """
+    if request.method == "POST":
+        try:
+            run = get_object_or_404(BacktestRun, pk=run_id, user=request.user)
+            run.notes = request.POST.get("notes")
+            run.save(update_fields=["notes"])
+            messages.add_message(request, messages.SUCCESS, "Notes updated")
+        except Exception:
+            messages.add_message(request, messages.ERROR, "Error updating notes")
+    return redirect("backtest-list")
+

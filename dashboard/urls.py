@@ -8,5 +8,6 @@ urlpatterns = [
     path("backtest_post/", views.backtest_post, name="backtest-post"),
     path("backtest_detail/<int:run_id>/", views.backtest_detail, name="backtest-detail"),
     path("backtest_detail/delete/<int:run_id>/", views.backtest_delete, name="delete-backtest-detail"),
+    path("backtest_detail/edit/<int:run_id>/", views.backtest_edit, name="edit-backtest-detail"),
     path("backtests/", views.backtest_list, name="backtest-list"),
 ]
